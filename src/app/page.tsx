@@ -37,66 +37,96 @@ export default function Home() {
       <SiteHeader />
 
       <main className="flex-1">
-        {/* Hero — one composition */}
+        {/* Hero */}
         <section
           id="inizio"
-          className="relative isolate min-h-[100svh] overflow-hidden text-foam"
+          className="noise-overlay relative isolate min-h-[100svh] overflow-hidden text-foam"
         >
           <Image
             src="/hero.jpg"
             alt=""
             fill
             priority
-            className="animate-drift object-cover object-center"
+            className="animate-drift object-cover object-[center_35%]"
             sizes="100vw"
           />
           <div
-            className="absolute inset-0 bg-gradient-to-br from-ink/75 via-tide/55 to-ink/40"
+            className="absolute inset-0 bg-[linear-gradient(120deg,oklch(0.16_0.04_210/0.82)_0%,oklch(0.28_0.05_185/0.55)_48%,oklch(0.22_0.04_200/0.35)_100%)]"
             aria-hidden
           />
           <div
-            className="animate-soft-pulse pointer-events-none absolute -left-20 top-1/4 size-72 rounded-full bg-tide/30 blur-3xl"
+            className="animate-soft-pulse pointer-events-none absolute -left-24 top-[18%] size-[28rem] rounded-full bg-signal/20 blur-3xl"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute bottom-[-10%] right-[-8%] size-[22rem] rounded-full bg-tide/30 blur-3xl"
             aria-hidden
           />
 
-          <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 sm:px-8 sm:pb-20 lg:justify-center lg:pb-24">
-            <p className="animate-rise font-[family-name:var(--font-heading)] text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+          <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 sm:px-8 sm:pb-24 lg:justify-center lg:pb-28">
+            <p className="animate-rise font-[family-name:var(--font-heading)] text-[clamp(2.75rem,9vw,6.5rem)] font-bold leading-[0.92] tracking-[-0.05em]">
               {site.brand}
             </p>
-            <h1 className="animate-rise-delay-1 mt-5 max-w-xl text-balance text-2xl font-medium leading-snug text-foam/95 sm:text-3xl md:text-4xl">
+
+            <div className="animate-line-grow mt-6 h-px w-28 bg-gradient-to-r from-signal to-transparent" />
+
+            <h1 className="animate-rise-delay-1 mt-7 max-w-2xl text-balance text-[clamp(1.5rem,3.4vw,2.35rem)] font-medium leading-[1.15] tracking-[-0.025em] text-foam">
               Uno psicologo ti ascolta. Gratis.
             </h1>
-            <p className="animate-rise-delay-2 mt-4 max-w-md text-pretty text-base leading-relaxed text-foam/80 sm:text-lg">
+            <p className="animate-rise-delay-2 mt-4 max-w-md text-pretty text-base leading-relaxed text-foam/72 sm:text-lg">
               Hai un problema e non sai da dove iniziare? Chiama: insieme
               cerchiamo di capirlo e di trovare una via.
             </p>
-            <div className="animate-rise-delay-3 mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+
+            <div className="animate-rise-delay-3 mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <CallButton />
-              <p className="text-sm text-foam/70">{site.hours}</p>
+              <p className="text-sm text-foam/60">{site.hours}</p>
             </div>
           </div>
         </section>
 
         {/* Come funziona */}
-        <section id="come-funziona" className="bg-mist/60 px-5 py-20 sm:px-8 sm:py-28">
+        <section
+          id="come-funziona"
+          className="mesh-bg relative overflow-hidden px-5 py-24 sm:px-8 sm:py-32"
+        >
           <div className="mx-auto max-w-6xl">
-            <h2 className="font-[family-name:var(--font-heading)] text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-              Come funziona
-            </h2>
-            <p className="mt-3 max-w-lg text-muted-foreground">
-              Tre passi semplici. Nessun costo, nessun impegno oltre la chiamata.
-            </p>
+            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-tide">
+                  Processo
+                </p>
+                <h2 className="mt-3 font-[family-name:var(--font-heading)] text-[clamp(2rem,4vw,3.25rem)] font-bold tracking-[-0.04em] text-ink">
+                  Come funziona
+                </h2>
+              </div>
+              <p className="max-w-sm text-muted-foreground md:text-right">
+                Tre passi semplici. Nessun costo, nessun impegno oltre la
+                chiamata.
+              </p>
+            </div>
 
-            <ol className="mt-14 grid gap-12 md:grid-cols-3 md:gap-8">
-              {steps.map((step) => (
-                <li key={step.n} className="relative">
-                  <span className="font-[family-name:var(--font-heading)] text-5xl font-semibold text-tide/25">
+            <ol className="mt-16 grid gap-0 md:grid-cols-3">
+              {steps.map((step, i) => (
+                <li
+                  key={step.n}
+                  className="group relative border-t border-ink/10 py-10 md:border-t-0 md:border-l md:px-8 md:py-2 md:first:border-l-0 md:first:pl-0"
+                >
+                  <span className="font-[family-name:var(--font-heading)] text-6xl font-bold tracking-[-0.06em] text-ink/[0.08] transition duration-500 group-hover:text-signal/50 sm:text-7xl">
                     {step.n}
                   </span>
-                  <h3 className="mt-3 text-xl font-semibold text-ink">{step.title}</h3>
-                  <p className="mt-2 text-muted-foreground leading-relaxed">
+                  <h3 className="mt-4 text-xl font-semibold tracking-tight text-ink">
+                    {step.title}
+                  </h3>
+                  <p className="mt-3 max-w-xs text-[0.95rem] leading-relaxed text-muted-foreground">
                     {step.text}
                   </p>
+                  {i < steps.length - 1 ? (
+                    <span
+                      className="pointer-events-none absolute right-0 top-1/2 hidden h-px w-8 -translate-y-1/2 bg-gradient-to-r from-ink/15 to-transparent md:block"
+                      aria-hidden
+                    />
+                  ) : null}
                 </li>
               ))}
             </ol>
@@ -104,58 +134,82 @@ export default function Home() {
         </section>
 
         {/* Temi */}
-        <section id="temi" className="bg-foam px-5 py-20 sm:px-8 sm:py-28">
-          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:gap-20">
-            <div>
-              <h2 className="font-[family-name:var(--font-heading)] text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+        <section id="temi" className="bg-foam px-5 py-24 sm:px-8 sm:py-32">
+          <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[0.9fr_1.2fr] lg:gap-24">
+            <div className="lg:sticky lg:top-24 lg:self-start">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-tide">
+                Ascolto
+              </p>
+              <h2 className="mt-3 font-[family-name:var(--font-heading)] text-[clamp(2rem,4vw,3.25rem)] font-bold tracking-[-0.04em] text-ink">
                 Di cosa possiamo parlare
               </h2>
-              <p className="mt-3 text-muted-foreground leading-relaxed">
+              <p className="mt-4 max-w-sm text-muted-foreground leading-relaxed">
                 Non serve avere le idee chiare. Se qualcosa ti pesa, puoi
                 chiamare: partiamo da lì.
               </p>
             </div>
-            <ul className="space-y-0 divide-y divide-border">
-              {topics.map((topic) => (
-                <li
-                  key={topic}
-                  className="py-4 text-lg text-ink first:pt-0 last:pb-0"
-                >
-                  {topic}
+
+            <ul className="space-y-0">
+              {topics.map((topic, index) => (
+                <li key={topic}>
+                  <a
+                    href={href ?? "#chiama"}
+                    className="topic-row group flex items-baseline gap-5 border-b border-ink/8 py-6 transition-colors hover:text-tide"
+                  >
+                    <span className="w-8 shrink-0 font-[family-name:var(--font-heading)] text-sm font-semibold text-ink/25 transition group-hover:text-signal">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-lg tracking-tight text-ink sm:text-xl md:text-2xl">
+                      {topic}
+                    </span>
+                  </a>
                 </li>
               ))}
             </ul>
           </div>
         </section>
 
-        {/* CTA + emergenza */}
+        {/* CTA */}
         <section
           id="chiama"
-          className="relative overflow-hidden bg-gradient-to-br from-tide to-ink px-5 py-20 text-foam sm:px-8 sm:py-28"
+          className="noise-overlay relative overflow-hidden bg-ink px-5 py-24 text-foam sm:px-8 sm:py-32"
         >
           <div
-            className="pointer-events-none absolute right-0 top-0 size-80 translate-x-1/3 -translate-y-1/3 rounded-full bg-foam/10 blur-3xl"
+            className="pointer-events-none absolute -right-20 top-0 size-[28rem] rounded-full bg-tide/30 blur-3xl"
             aria-hidden
           />
+          <div
+            className="pointer-events-none absolute -left-16 bottom-0 size-[22rem] rounded-full bg-signal/20 blur-3xl"
+            aria-hidden
+          />
+
           <div className="relative mx-auto max-w-6xl">
-            <h2 className="font-[family-name:var(--font-heading)] text-3xl font-semibold tracking-tight sm:text-4xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-signal">
+              Contatto
+            </p>
+            <h2 className="mt-4 max-w-3xl font-[family-name:var(--font-heading)] text-[clamp(2.4rem,6vw,4.5rem)] font-bold leading-[0.95] tracking-[-0.05em]">
               Pronto a parlare?
             </h2>
-            <p className="mt-3 max-w-md text-foam/80">
+            <p className="mt-5 max-w-md text-lg text-foam/65">
               {site.phoneReady
                 ? `Componi ${site.phoneDisplay}: rispondiamo durante gli orari indicati.`
-                : "Il numero gratuito sarà pubblicato a breve. Nel frattempo puoi lasciare il sito pronto: aggiorneremo il contatto appena disponibile."}
+                : "Il numero gratuito sarà pubblicato a breve."}
             </p>
-            <div className="mt-8">
-              <CallButton className="bg-foam text-ink hover:bg-foam/90" />
+
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <CallButton tone="light" />
+              <p className="text-sm text-foam/45">{site.hours}</p>
             </div>
 
-            <aside className="mt-14 max-w-2xl border-t border-foam/20 pt-8 text-sm leading-relaxed text-foam/75">
-              <p className="font-medium text-foam">In caso di emergenza</p>
+            <aside className="mt-16 max-w-2xl rounded-3xl border border-foam/10 bg-foam/[0.04] p-6 text-sm leading-relaxed text-foam/60 backdrop-blur-sm sm:p-8">
+              <p className="font-semibold text-foam">In caso di emergenza</p>
               <p className="mt-2">
                 Se sei in pericolo immediato o pensi di farti del male, chiama
                 subito il{" "}
-                <a href="tel:112" className="underline underline-offset-2">
+                <a
+                  href="tel:112"
+                  className="font-medium text-signal underline decoration-signal/40 underline-offset-4"
+                >
                   112
                 </a>{" "}
                 o recati al pronto soccorso. AscoltoAperto è un servizio di
@@ -167,17 +221,21 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-border bg-mist/40 px-5 py-10 sm:px-8">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <footer className="border-t border-ink/8 bg-mist/50 px-5 py-12 sm:px-8">
+        <div className="mx-auto flex max-w-6xl flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="font-[family-name:var(--font-heading)] text-lg font-semibold text-ink">
+            <p className="font-[family-name:var(--font-heading)] text-xl font-bold tracking-[-0.04em] text-ink">
               {site.brand}
+              <span className="ml-1 inline-block size-1.5 translate-y-[-0.35em] rounded-full bg-signal" />
             </p>
-            <p className="text-sm text-muted-foreground">{site.tagline}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{site.tagline}</p>
           </div>
           <div className="text-sm text-muted-foreground sm:text-right">
             {href ? (
-              <a href={href} className="font-medium text-tide hover:underline">
+              <a
+                href={href}
+                className="text-base font-semibold tracking-tight text-ink transition hover:text-tide"
+              >
                 {site.phoneDisplay}
               </a>
             ) : (
