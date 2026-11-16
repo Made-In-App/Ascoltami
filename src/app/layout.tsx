@@ -1,0 +1,31 @@
+import type { Metadata } from "next";
+import { Fraunces, Manrope } from "next/font/google";
+import { site } from "@/lib/site";
+import "./globals.css";
+
+const manrope = Manrope({
+  variable: "--font-sans",
+  subsets: ["latin"],
+});
+
+const fraunces = Fraunces({
+  variable: "--font-heading",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: `${site.brand} — ${site.tagline}`,
+  description:
+    "Chiamaci gratuitamente: uno psicologo ti ascolta e ti aiuta a affrontare il momento difficile. Nessun costo, solo ascolto.",
+};
+
+export default function RootLayout({ children }: LayoutProps<"/">) {
+  return (
+    <html
+      lang="it"
+      className={`${manrope.variable} ${fraunces.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col font-sans">{children}</body>
+    </html>
+  );
+}
