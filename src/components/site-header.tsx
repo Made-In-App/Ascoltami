@@ -1,4 +1,4 @@
-import { priceLabel, site } from "@/lib/site";
+import { site } from "@/lib/site";
 
 type SiteHeaderProps = {
   variant?: "hero" | "plain";
@@ -42,14 +42,14 @@ export function SiteHeader({ variant = "hero" }: SiteHeaderProps) {
             Di cosa parliamo
           </a>
           <a
-            href="/#chiama"
+            href="/#prenota"
             className={`ml-1 rounded-xl px-3.5 py-2 font-medium backdrop-blur-md transition ${
               light
                 ? "bg-foam/12 text-foam hover:bg-foam/20"
                 : "bg-ink text-foam hover:bg-ink/90"
             }`}
           >
-            Accedi · {priceLabel()}
+            Prenota
           </a>
         </nav>
       </div>

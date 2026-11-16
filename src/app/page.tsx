@@ -1,18 +1,18 @@
 import Image from "next/image";
-import { PayButton } from "@/components/pay-button";
+import { BookButton } from "@/components/book-button";
 import { SiteHeader } from "@/components/site-header";
-import { priceLabel, site } from "@/lib/site";
+import { bookHref, site } from "@/lib/site";
 
 const steps = [
   {
     n: "01",
-    title: "Paga l’accesso",
-    text: `Con ${priceLabel()} sblocchi il numero. Pagamento sicuro online.`,
+    title: "Scrivimi una mail",
+    text: "Usa il pulsante Prenota: si apre una mail già pronta per me.",
   },
   {
     n: "02",
-    title: "Chiama quando vuoi",
-    text: "Nei giorni e orari indicati. Non serve appuntamento né registrazione.",
+    title: "Scegliamo quando",
+    text: "Ti rispondo e fissiamo un momento negli orari disponibili.",
   },
   {
     n: "03",
@@ -75,10 +75,8 @@ export default function Home() {
             </p>
 
             <div className="animate-rise-delay-3 mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <PayButton />
-              <p className="text-sm text-foam/60">
-                {priceLabel()} · poi ti mostro il numero · {site.hours}
-              </p>
+              <BookButton />
+              <p className="text-sm text-foam/60">{site.hours}</p>
             </div>
           </div>
         </section>
@@ -98,8 +96,7 @@ export default function Home() {
                 </h2>
               </div>
               <p className="max-w-sm text-muted-foreground md:text-right">
-                Paghi online, sblocchi il numero e mi chiami negli orari
-                disponibili.
+                Scrivi una mail, fissiamo un momento e parliamo con calma.
               </p>
             </div>
 
@@ -141,7 +138,7 @@ export default function Home() {
               </h2>
               <p className="mt-4 max-w-sm text-muted-foreground leading-relaxed">
                 Non serve avere le idee chiare. Se qualcosa ti pesa, puoi
-                chiamare: partiamo da lì.
+                scrivermi: partiamo da lì.
               </p>
             </div>
 
@@ -149,7 +146,7 @@ export default function Home() {
               {topics.map((topic, index) => (
                 <li key={topic}>
                   <a
-                    href="#chiama"
+                    href="#prenota"
                     className="topic-row group flex items-baseline gap-5 border-b border-ink/8 py-6 transition-colors hover:text-tide"
                   >
                     <span className="w-8 shrink-0 font-[family-name:var(--font-heading)] text-sm font-semibold text-ink/25 transition group-hover:text-signal">
@@ -166,7 +163,7 @@ export default function Home() {
         </section>
 
         <section
-          id="chiama"
+          id="prenota"
           className="noise-overlay relative overflow-hidden bg-ink px-5 py-24 text-foam sm:px-8 sm:py-32"
         >
           <div
@@ -180,18 +177,18 @@ export default function Home() {
 
           <div className="relative mx-auto max-w-6xl">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-signal">
-              Accesso
+              Prenota
             </p>
             <h2 className="mt-4 max-w-3xl font-[family-name:var(--font-heading)] text-[clamp(2.4rem,6vw,4.5rem)] font-bold leading-[0.95] tracking-[-0.05em]">
-              Sblocca il numero
+              Scrivimi per prenotarti
             </h2>
             <p className="mt-5 max-w-md text-lg text-foam/65">
-              Dopo il pagamento di {priceLabel()} ti mostro il numero da
-              chiamare. Orari: {site.hours}.
+              Mandami una mail a {site.email}: organizziamo un momento per
+              parlare. Orari: {site.hours}.
             </p>
 
             <div className="mt-10">
-              <PayButton tone="light" />
+              <BookButton tone="light" />
             </div>
 
             <aside className="mt-16 max-w-2xl rounded-3xl border border-foam/10 bg-foam/[0.04] p-6 text-sm leading-relaxed text-foam/60 backdrop-blur-sm sm:p-8">
@@ -221,15 +218,15 @@ export default function Home() {
               <span className="ml-1 inline-block size-1.5 translate-y-[-0.35em] rounded-full bg-signal" />
             </p>
             <p className="mt-1 max-w-md text-sm text-muted-foreground">
-              {site.tagline} · {priceLabel()}
+              {site.tagline}
             </p>
           </div>
           <div className="text-sm text-muted-foreground sm:text-right">
             <a
-              href="#chiama"
+              href={bookHref()}
               className="text-base font-semibold tracking-tight text-ink transition hover:text-tide"
             >
-              Accedi · {priceLabel()}
+              {site.email}
             </a>
             <p className="mt-1">{site.hours}</p>
           </div>

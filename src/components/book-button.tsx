@@ -1,19 +1,13 @@
-import { Phone } from "lucide-react";
+import { Mail } from "lucide-react";
+import { bookHref, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-type CallButtonProps = {
+type BookButtonProps = {
   className?: string;
-  phoneDisplay: string;
-  phoneHref: string;
   tone?: "dark" | "light";
 };
 
-export function CallButton({
-  className,
-  phoneDisplay,
-  phoneHref,
-  tone = "dark",
-}: CallButtonProps) {
+export function BookButton({ className, tone = "dark" }: BookButtonProps) {
   const classes = cn(
     "group inline-flex h-14 items-center gap-3 rounded-2xl px-6 text-[0.95rem] font-semibold tracking-tight transition-all duration-300",
     tone === "dark"
@@ -23,12 +17,12 @@ export function CallButton({
   );
 
   return (
-    <a href={phoneHref} className={classes}>
+    <a href={bookHref()} className={classes}>
       <span className="relative flex size-8 items-center justify-center rounded-xl bg-ink/10 transition group-hover:bg-ink/15">
-        <Phone className="size-4" aria-hidden />
+        <Mail className="size-4" aria-hidden />
         <span className="absolute inset-0 animate-soft-pulse rounded-xl bg-ink/10" aria-hidden />
       </span>
-      Chiama · {phoneDisplay}
+      Prenota · {site.email}
     </a>
   );
 }
