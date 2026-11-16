@@ -1,23 +1,23 @@
 import Image from "next/image";
-import { CallButton } from "@/components/call-button";
+import { PayButton } from "@/components/pay-button";
 import { SiteHeader } from "@/components/site-header";
-import { callHref, site } from "@/lib/site";
+import { priceLabel, site } from "@/lib/site";
 
 const steps = [
   {
     n: "01",
-    title: "Componi il numero",
-    text: "La chiamata è gratuita. Non serve appuntamento né registrazione.",
+    title: "Paga l’accesso",
+    text: `Con ${priceLabel()} sblocchi il numero. Pagamento sicuro online.`,
   },
   {
     n: "02",
-    title: "Racconta cosa ti pesa",
-    text: "Ti ascolto con rispetto, senza giudizio e senza fretta.",
+    title: "Chiama quando vuoi",
+    text: "Nei giorni e orari indicati. Non serve appuntamento né registrazione.",
   },
   {
     n: "03",
     title: "Cerchiamo di capirci",
-    text: "Parto dalle tue esperienze: insieme provo a capire cosa stai vivendo.",
+    text: "Ti ascolto senza giudizio e provo a capire cosa stai vivendo, partendo dalle tue esperienze.",
   },
 ];
 
@@ -30,14 +30,11 @@ const topics = [
 ];
 
 export default function Home() {
-  const href = callHref();
-
   return (
     <>
       <SiteHeader />
 
       <main className="flex-1">
-        {/* Hero */}
         <section
           id="inizio"
           className="noise-overlay relative isolate min-h-[100svh] overflow-hidden text-foam"
@@ -71,20 +68,21 @@ export default function Home() {
             <div className="animate-line-grow mt-6 h-px w-28 bg-gradient-to-r from-signal to-transparent" />
 
             <h1 className="animate-rise-delay-1 mt-7 max-w-2xl text-balance text-[clamp(1.5rem,3.4vw,2.35rem)] font-medium leading-[1.15] tracking-[-0.025em] text-foam">
-              Qualcuno che ti ascolta. Gratis.
+              Qualcuno che ti ascolta.
             </h1>
             <p className="animate-rise-delay-2 mt-4 max-w-lg text-pretty text-base leading-relaxed text-foam/72 sm:text-lg">
               {site.about}
             </p>
 
             <div className="animate-rise-delay-3 mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <CallButton />
-              <p className="text-sm text-foam/60">{site.hours}</p>
+              <PayButton />
+              <p className="text-sm text-foam/60">
+                {priceLabel()} · poi ti mostro il numero · {site.hours}
+              </p>
             </div>
           </div>
         </section>
 
-        {/* Come funziona */}
         <section
           id="come-funziona"
           className="mesh-bg relative overflow-hidden px-5 py-24 sm:px-8 sm:py-32"
@@ -100,8 +98,8 @@ export default function Home() {
                 </h2>
               </div>
               <p className="max-w-sm text-muted-foreground md:text-right">
-                Tre passi semplici. Nessun costo, nessun impegno oltre la
-                chiamata.
+                Paghi online, sblocchi il numero e mi chiami negli orari
+                disponibili.
               </p>
             </div>
 
@@ -132,7 +130,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Temi */}
         <section id="temi" className="bg-foam px-5 py-24 sm:px-8 sm:py-32">
           <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[0.9fr_1.2fr] lg:gap-24">
             <div className="lg:sticky lg:top-24 lg:self-start">
@@ -152,7 +149,7 @@ export default function Home() {
               {topics.map((topic, index) => (
                 <li key={topic}>
                   <a
-                    href={href ?? "#chiama"}
+                    href="#chiama"
                     className="topic-row group flex items-baseline gap-5 border-b border-ink/8 py-6 transition-colors hover:text-tide"
                   >
                     <span className="w-8 shrink-0 font-[family-name:var(--font-heading)] text-sm font-semibold text-ink/25 transition group-hover:text-signal">
@@ -168,7 +165,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CTA */}
         <section
           id="chiama"
           className="noise-overlay relative overflow-hidden bg-ink px-5 py-24 text-foam sm:px-8 sm:py-32"
@@ -184,20 +180,18 @@ export default function Home() {
 
           <div className="relative mx-auto max-w-6xl">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-signal">
-              Contatto
+              Accesso
             </p>
             <h2 className="mt-4 max-w-3xl font-[family-name:var(--font-heading)] text-[clamp(2.4rem,6vw,4.5rem)] font-bold leading-[0.95] tracking-[-0.05em]">
-              Pronto a parlare?
+              Sblocca il numero
             </h2>
             <p className="mt-5 max-w-md text-lg text-foam/65">
-              {site.phoneReady
-                ? `Componi ${site.phoneDisplay}: rispondo durante gli orari indicati.`
-                : "Il numero gratuito sarà pubblicato a breve."}
+              Dopo il pagamento di {priceLabel()} ti mostro il numero da
+              chiamare. Orari: {site.hours}.
             </p>
 
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <CallButton tone="light" />
-              <p className="text-sm text-foam/45">{site.hours}</p>
+            <div className="mt-10">
+              <PayButton tone="light" />
             </div>
 
             <aside className="mt-16 max-w-2xl rounded-3xl border border-foam/10 bg-foam/[0.04] p-6 text-sm leading-relaxed text-foam/60 backdrop-blur-sm sm:p-8">
@@ -227,20 +221,16 @@ export default function Home() {
               <span className="ml-1 inline-block size-1.5 translate-y-[-0.35em] rounded-full bg-signal" />
             </p>
             <p className="mt-1 max-w-md text-sm text-muted-foreground">
-              {site.tagline}
+              {site.tagline} · {priceLabel()}
             </p>
           </div>
           <div className="text-sm text-muted-foreground sm:text-right">
-            {href ? (
-              <a
-                href={href}
-                className="text-base font-semibold tracking-tight text-ink transition hover:text-tide"
-              >
-                {site.phoneDisplay}
-              </a>
-            ) : (
-              <span>Numero in arrivo</span>
-            )}
+            <a
+              href="#chiama"
+              className="text-base font-semibold tracking-tight text-ink transition hover:text-tide"
+            >
+              Accedi · {priceLabel()}
+            </a>
             <p className="mt-1">{site.hours}</p>
           </div>
         </div>
