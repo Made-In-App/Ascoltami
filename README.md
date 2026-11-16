@@ -13,17 +13,17 @@ Sito web per una **linea di consulenza psicologica gratuita** al telefono: le pe
 
 Il numero si configura in un solo file:
 
+Il numero attuale è **+39 320 378 8296**. Per cambiarlo:
+
 ```ts
 // src/lib/site.ts
 export const site = {
-  phoneDisplay: "+39 123 456 7890", // come lo vedi sul sito
-  phoneTel: "+391234567890",        // solo per il link tel:
-  phoneReady: true,                 // attiva i pulsanti Chiama
+  phoneDisplay: "+39 320 378 8296", // come lo vedi sul sito
+  phoneTel: "+393203788296",       // solo per il link tel:
+  phoneReady: true,                // attiva i pulsanti Chiama
   // ...
 }
 ```
-
-Finché `phoneReady` è `false`, il sito mostra «Numero in arrivo».
 
 ## Avvio in locale
 
