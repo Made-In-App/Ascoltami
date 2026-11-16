@@ -1,10 +1,11 @@
 /**
- * Configurazione del sito — aggiorna il numero quando lo ricevi.
- * Imposta `phoneReady: true` e inserisci display + tel (solo cifre con prefisso).
+ * Configurazione del sito — aggiorna qui numero, orari e testi base.
  */
 export const site = {
   brand: "AscoltoAperto",
-  tagline: "Consulenza psicologica gratuita al telefono",
+  tagline: "Un ascolto gratuito, da persona a persona",
+  about:
+    "Non sono uno psicologo: ho 18 anni e voglio parlarti, ascoltarti e cercare di capirti in base alle tue esperienze.",
   /** Numero visibile agli utenti (es. "+39 123 456 7890") */
   phoneDisplay: "+39 320 378 8296",
   /** Formato tel: link (es. "+391234567890") — senza spazi */

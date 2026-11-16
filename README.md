@@ -1,29 +1,20 @@
 # AscoltoAperto
 
-Sito web per una **linea di consulenza psicologica gratuita** al telefono: le persone chiamano, parlano con uno psicologo e cercano insieme una via per affrontare il problema.
+Sito per una **linea di ascolto gratuita** al telefono: un ragazzo di 18 anni ascolta, parla con te e cerca di capirti in base alle tue esperienze. Non è un servizio psicologico professionale.
 
 ## Cosa fa il sito
 
-- Presenta il servizio in modo chiaro e rassicurante
-- Mette in evidenza il numero da chiamare (gratuito)
+- Presenta chi risponde e cosa offre (ascolto, non terapia)
+- Mette in evidenza il numero da chiamare
 - Spiega come funziona e di cosa si può parlare
-- Include un avviso per le emergenze (112)
+- Include un avviso chiaro per le emergenze (112)
 
-## Numero di telefono
+## Configurazione
 
-Il numero si configura in un solo file:
+Testi, orari e numero stanno in `src/lib/site.ts`.
 
-Il numero attuale è **+39 320 378 8296**. Per cambiarlo:
-
-```ts
-// src/lib/site.ts
-export const site = {
-  phoneDisplay: "+39 320 378 8296", // come lo vedi sul sito
-  phoneTel: "+393203788296",       // solo per il link tel:
-  phoneReady: true,                // attiva i pulsanti Chiama
-  // ...
-}
-```
+Numero attuale: **+39 320 378 8296**  
+Orari: Lun–Ven 9:00–18:00 · Sab 14:00–02:00
 
 ## Avvio in locale
 
@@ -36,12 +27,12 @@ Apri [http://127.0.0.1:3847](http://127.0.0.1:3847).
 
 ## Script
 
-| Comando        | Descrizione              |
-|----------------|--------------------------|
-| `npm run dev`  | Server di sviluppo       |
-| `npm run build`| Build di produzione      |
-| `npm run start`| Avvia la build           |
-| `npm run lint` | ESLint                   |
+| Comando         | Descrizione        |
+|-----------------|--------------------|
+| `npm run dev`   | Server di sviluppo |
+| `npm run build` | Build di produzione|
+| `npm run start` | Avvia la build     |
+| `npm run lint`  | ESLint             |
 
 ## Stack
 

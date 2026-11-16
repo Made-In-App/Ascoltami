@@ -15,8 +15,7 @@ const syne = Syne({
 
 export const metadata: Metadata = {
   title: `${site.brand} — ${site.tagline}`,
-  description:
-    "Chiamaci gratuitamente: uno psicologo ti ascolta e ti aiuta a affrontare il momento difficile. Nessun costo, solo ascolto.",
+  description: site.about,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

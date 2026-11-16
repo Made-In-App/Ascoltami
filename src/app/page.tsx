@@ -12,20 +12,20 @@ const steps = [
   {
     n: "02",
     title: "Racconta cosa ti pesa",
-    text: "Uno psicologo ti ascolta con rispetto, senza giudizio e senza fretta.",
+    text: "Ti ascolto con rispetto, senza giudizio e senza fretta.",
   },
   {
     n: "03",
-    title: "Cerca insieme una via",
-    text: "Lavoriamo sul problema concreto: chiarezza, strumenti e prossimo passo.",
+    title: "Cerchiamo di capirci",
+    text: "Parto dalle tue esperienze: insieme provo a capire cosa stai vivendo.",
   },
 ];
 
 const topics = [
   "Ansia, stress e pensieri che non si fermano",
-  "Difficoltà in famiglia o nella relazione di coppia",
-  "Lavoro, burnout e senso di blocco",
-  "Solitudine, lutto o un momento di crisi",
+  "Difficoltà in famiglia o nella relazione",
+  "Scuola, lavoro e senso di blocco",
+  "Solitudine o un momento difficile",
   "Dubbi su te stesso e sulle scelte da fare",
 ];
 
@@ -71,11 +71,10 @@ export default function Home() {
             <div className="animate-line-grow mt-6 h-px w-28 bg-gradient-to-r from-signal to-transparent" />
 
             <h1 className="animate-rise-delay-1 mt-7 max-w-2xl text-balance text-[clamp(1.5rem,3.4vw,2.35rem)] font-medium leading-[1.15] tracking-[-0.025em] text-foam">
-              Uno psicologo ti ascolta. Gratis.
+              Qualcuno che ti ascolta. Gratis.
             </h1>
-            <p className="animate-rise-delay-2 mt-4 max-w-md text-pretty text-base leading-relaxed text-foam/72 sm:text-lg">
-              Hai un problema e non sai da dove iniziare? Chiama: insieme
-              cerchiamo di capirlo e di trovare una via.
+            <p className="animate-rise-delay-2 mt-4 max-w-lg text-pretty text-base leading-relaxed text-foam/72 sm:text-lg">
+              {site.about}
             </p>
 
             <div className="animate-rise-delay-3 mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
@@ -192,7 +191,7 @@ export default function Home() {
             </h2>
             <p className="mt-5 max-w-md text-lg text-foam/65">
               {site.phoneReady
-                ? `Componi ${site.phoneDisplay}: rispondiamo durante gli orari indicati.`
+                ? `Componi ${site.phoneDisplay}: rispondo durante gli orari indicati.`
                 : "Il numero gratuito sarà pubblicato a breve."}
             </p>
 
@@ -202,19 +201,18 @@ export default function Home() {
             </div>
 
             <aside className="mt-16 max-w-2xl rounded-3xl border border-foam/10 bg-foam/[0.04] p-6 text-sm leading-relaxed text-foam/60 backdrop-blur-sm sm:p-8">
-              <p className="font-semibold text-foam">In caso di emergenza</p>
+              <p className="font-semibold text-foam">Importante sapere</p>
               <p className="mt-2">
-                Se sei in pericolo immediato o pensi di farti del male, chiama
-                subito il{" "}
+                Non sono uno psicologo e non offro terapia professionale: solo
+                ascolto e confronto. Se sei in pericolo immediato o pensi di
+                farti del male, chiama subito il{" "}
                 <a
                   href="tel:112"
                   className="font-medium text-signal underline decoration-signal/40 underline-offset-4"
                 >
                   112
                 </a>{" "}
-                o recati al pronto soccorso. AscoltoAperto è un servizio di
-                ascolto e orientamento, non sostituisce un intervento di
-                emergenza.
+                o recati al pronto soccorso.
               </p>
             </aside>
           </div>
@@ -228,7 +226,9 @@ export default function Home() {
               {site.brand}
               <span className="ml-1 inline-block size-1.5 translate-y-[-0.35em] rounded-full bg-signal" />
             </p>
-            <p className="mt-1 text-sm text-muted-foreground">{site.tagline}</p>
+            <p className="mt-1 max-w-md text-sm text-muted-foreground">
+              {site.tagline}
+            </p>
           </div>
           <div className="text-sm text-muted-foreground sm:text-right">
             {href ? (
