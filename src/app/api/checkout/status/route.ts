@@ -1,16 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getStripe, stripeConfigured } from "@/lib/stripe";
+import {
+  allowMockCheckout,
+  getStripe,
+  stripeConfigured,
+} from "@/lib/stripe";
 import { callHref, site } from "@/lib/site";
 
 export async function GET(req: NextRequest) {
   const sessionId = req.nextUrl.searchParams.get("session_id");
 
   if (!sessionId) {
-    return NextResponse.json({ paid: false, error: "Sessione mancante" }, { status: 400 });
+    return NextResponse.json(
+      { paid: false, error: "Sessione mancante" },
+      { status: 400 }
+    );
   }
 
-  // Local / sample path until Stripe is configured
   if (sessionId === "mock_paid") {
+    if (!allowMockCheckout()) {
+      return NextResponse.json(
+        { paid: false, error: "Sessione di esempio non valida" },
+        { status: 400 }
+      );
+    }
     return NextResponse.json({
       paid: true,
       mock: true,
@@ -21,12 +33,18 @@ export async function GET(req: NextRequest) {
   }
 
   if (!stripeConfigured()) {
-    return NextResponse.json({ paid: false, error: "Pagamento non configurato" }, { status: 503 });
+    return NextResponse.json(
+      { paid: false, error: "Pagamento non configurato" },
+      { status: 503 }
+    );
   }
 
   const stripe = getStripe();
   if (!stripe) {
-    return NextResponse.json({ paid: false, error: "Pagamento non disponibile" }, { status: 503 });
+    return NextResponse.json(
+      { paid: false, error: "Pagamento non disponibile" },
+      { status: 503 }
+    );
   }
 
   try {

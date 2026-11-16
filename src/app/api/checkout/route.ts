@@ -1,21 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
-import { checkoutAmountCents, getStripe, stripeConfigured } from "@/lib/stripe";
+import {
+  allowMockCheckout,
+  appBaseUrl,
+  checkoutAmountCents,
+  getStripe,
+  stripeConfigured,
+} from "@/lib/stripe";
 import { site } from "@/lib/site";
 
-function originFrom(req: NextRequest): string {
-  const proto = req.headers.get("x-forwarded-proto") ?? "http";
-  const host =
-    req.headers.get("x-forwarded-host") ??
-    req.headers.get("host") ??
-    "127.0.0.1:3847";
-  return `${proto}://${host}`;
-}
-
 export async function POST(req: NextRequest) {
-  const origin = originFrom(req);
+  const origin = appBaseUrl(req);
 
   if (!stripeConfigured()) {
-    // Mock fallback when Stripe is not configured yet
+    if (!allowMockCheckout()) {
+      return NextResponse.json(
+        { error: "Pagamento non configurato" },
+        { status: 503 }
+      );
+    }
+    // Dev-only sample path when Stripe is unset
     return NextResponse.json({
       url: `${origin}/accesso?session_id=mock_paid`,
       mock: true,

@@ -14,10 +14,13 @@ Orari: Lun–Ven 9:00–18:00 · Sab 14:00–02:00
 
 ## Stripe
 
-L’app legge `STRIPE_SECRET_KEY`.
+L’app legge `STRIPE_SECRET_KEY` (obbligatoria in produzione).
 
-- Se la chiave **non** c’è: modalità esempio — il pulsante sblocca comunque il numero (utile in locale / anteprima).
-- Se la chiave **c’è**: pagamento reale su Stripe, poi sblocco del numero.
+- **Produzione**: senza chiave il pagamento resta chiuso (nessuno sblocco del numero).
+- **Sviluppo locale** (`NODE_ENV=development`) senza chiave: sblocco di esempio solo in locale.
+- La sessione finta `mock_paid` non sblocca mai il numero se Stripe è configurato, né in produzione.
+
+Opzionale: `APP_BASE_URL` (es. `https://ascoltami.apps.grok.bot`) per i redirect Stripe. Se assente si usa l’origine della richiesta Next.js, senza fidarsi di header `x-forwarded-*` forgiati.
 
 ## Avvio in locale
 
