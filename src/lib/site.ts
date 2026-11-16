@@ -11,7 +11,7 @@ export const site = {
   phoneTel: "+393203788296",
   /** Metti true quando il numero reale è pronto */
   phoneReady: true,
-  hours: "Lun–Ven 9:00–18:00 · Sab 10:00–13:00",
+  hours: "Lun–Ven 9:00–18:00 · Sab 14:00–02:00",
   email: "info@ascoltoaperto.it",
 } as const;
 
