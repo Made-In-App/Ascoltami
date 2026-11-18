@@ -1,25 +1,30 @@
-# AscoltoAperto
+# Ascoltami
 
-Sito per una **linea di ascolto**: un ragazzo di 18 anni ascolta e cerca di capirti in base alle tue esperienze. Non è un servizio psicologico professionale.
+Marketplace web di **peer listening** audio-only (non terapia). Brand **Ascoltami**, 18+, listino €5 / pack €22 / pack €40.
 
-## Flusso
-
-1. L’utente scrive una mail per prenotare
-2. Si fissa un momento negli orari indicati
-3. Si parla e si cerca di capirsi
-
-Email prenotazioni: **jacopo.gennuso@gmail.com**  
-Orari: Lun–Ven 9:00–18:00 · Sab 14:00–02:00
-
-## Avvio in locale
+## Sviluppo
 
 ```bash
 npm install
 npm run dev
 ```
 
-Apri [http://127.0.0.1:3847](http://127.0.0.1:3847).
+Apre su [http://127.0.0.1:3847](http://127.0.0.1:3847).
 
-## Stack
+## MVP: cosa è reale vs stub
 
-Next.js (App Router), TypeScript, Tailwind CSS, shadcn/ui.
+| Area | Stato |
+| --- | --- |
+| Landing, prezzi, legale, age gate 18+ | UI reale |
+| Auth Speaker/Listener | Leggera (localStorage browser) |
+| Checkout | Stripe se `STRIPE_SECRET_KEY`, altrimenti stub |
+| Matching | Placeholder / waiting UI |
+| Call room | UI audio-only; LiveKit stub senza chiavi |
+| Bot | Fuori MVP (fase 1.5) |
+
+## Secrets da aggiungere (hosting)
+
+- `STRIPE_SECRET_KEY` — Checkout reale
+- `LIVEKIT_API_KEY` / `LIVEKIT_API_SECRET` / URL LiveKit — room audio reale (quando integrate)
+
+Non servono numeri di telefono: il contatto resta solo in piattaforma.

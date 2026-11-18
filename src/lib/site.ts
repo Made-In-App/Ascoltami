@@ -1,19 +1,20 @@
 /**
- * Configurazione del sito — aggiorna qui email, orari e testi.
+ * Configurazione brand e copy Ascoltami marketplace.
  */
 export const site = {
-  brand: "AscoltoAperto",
-  tagline: "Ascolto e confronto, da persona a persona",
+  brand: "Ascoltami",
+  tagline: "Uno spazio sicuro per raccontarti. Solo audio.",
   about:
-    "Non sono uno psicologo: ho 18 anni e voglio parlarti, ascoltarti e cercare di capirti in base alle tue esperienze.",
-  email: "jacopo.gennuso@gmail.com",
-  hours: "Lun–Ven 9:00–18:00 · Sab 14:00–02:00",
+    "Marketplace di ascolto peer: parli con una persona, nel browser, senza condividere il numero. Non è terapia.",
+  hours: "Ascolto live consigliato 18:00–23:00",
+  emergency: "112",
 } as const;
 
-export function bookHref(): string {
-  const subject = encodeURIComponent("Prenotazione AscoltoAperto");
-  const body = encodeURIComponent(
-    "Ciao Jacopo,\n\nvorrei prenotare un momento per parlare.\n\nGrazie."
-  );
-  return `mailto:${site.email}?subject=${subject}&body=${body}`;
-}
+export const disclaimers = {
+  short:
+    "Peer support · non è terapia · 18+ · audio nel browser · nessuna registrazione",
+  clinical:
+    "Ascoltami non è psicoterapia, counseling clinico né un servizio di emergenza. I Listener non sono terapeuti. In emergenza chiama i servizi locali.",
+  footer:
+    "Ascoltami è per maggiorenni (18+). Non è un servizio di emergenza né terapia.",
+} as const;

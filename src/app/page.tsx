@@ -1,32 +1,27 @@
 import Image from "next/image";
-import { BookButton } from "@/components/book-button";
+import Link from "next/link";
+import { CtaLink } from "@/components/cta-link";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { bookHref, site } from "@/lib/site";
+import { formatEur, SKUS } from "@/lib/pricing";
+import { disclaimers, site } from "@/lib/site";
 
 const steps = [
   {
     n: "01",
-    title: "Scrivimi una mail",
-    text: "Usa il pulsante Prenota: si apre una mail già pronta per me.",
+    title: "Paga o usa un token",
+    text: "Chiamata diretta a €5, oppure pack 5 / 10. Prezzo chiaro, niente al minuto.",
   },
   {
     n: "02",
-    title: "Scegliamo quando",
-    text: "Ti rispondo e fissiamo un momento negli orari disponibili.",
+    title: "Match con un Listener",
+    text: "Cerchiamo un ascoltatore disponibile. In MVP: coda se nessuno è online — niente bot.",
   },
   {
     n: "03",
-    title: "Cerchiamo di capirci",
-    text: "Ti ascolto senza giudizio e provo a capire cosa stai vivendo, partendo dalle tue esperienze.",
+    title: "Audio nel browser",
+    text: "Sessione audio-only ≤30′ su Ascoltami. Niente video, niente numeri esterni.",
   },
-];
-
-const topics = [
-  "Ansia, stress e pensieri che non si fermano",
-  "Difficoltà in famiglia o nella relazione",
-  "Scuola, lavoro e senso di blocco",
-  "Solitudine o un momento difficile",
-  "Dubbi su te stesso e sulle scelte da fare",
 ];
 
 export default function Home() {
@@ -35,10 +30,7 @@ export default function Home() {
       <SiteHeader />
 
       <main className="flex-1">
-        <section
-          id="inizio"
-          className="noise-overlay relative isolate min-h-[100svh] overflow-hidden text-foam"
-        >
+        <section className="noise-overlay relative isolate min-h-[100svh] overflow-hidden text-foam">
           <Image
             src="/hero.jpg"
             alt=""
@@ -68,16 +60,23 @@ export default function Home() {
             <div className="animate-line-grow mt-6 h-px w-28 bg-gradient-to-r from-signal to-transparent" />
 
             <h1 className="animate-rise-delay-1 mt-7 max-w-2xl text-balance text-[clamp(1.5rem,3.4vw,2.35rem)] font-medium leading-[1.15] tracking-[-0.025em] text-foam">
-              Qualcuno che ti ascolta.
+              Uno spazio sicuro per raccontarti. Solo audio.
             </h1>
             <p className="animate-rise-delay-2 mt-4 max-w-lg text-pretty text-base leading-relaxed text-foam/72 sm:text-lg">
-              {site.about}
+              Peer listening nel browser — non è terapia. Niente numero di
+              telefono da condividere.
             </p>
 
             <div className="animate-rise-delay-3 mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <BookButton />
-              <p className="text-sm text-foam/60">{site.hours}</p>
+              <CtaLink href="/eta?next=/registrati&role=speaker">
+                Chiamata audio · {formatEur(SKUS.call5.priceEur)}
+              </CtaLink>
+              <CtaLink href="/prezzi" tone="ghost" className="text-foam">
+                Pack da {formatEur(SKUS.pack5.priceEur)}
+              </CtaLink>
             </div>
+
+            <p className="mt-8 max-w-xl text-sm text-foam/55">{disclaimers.short}</p>
           </div>
         </section>
 
@@ -96,7 +95,7 @@ export default function Home() {
                 </h2>
               </div>
               <p className="max-w-sm text-muted-foreground md:text-right">
-                Scrivi una mail, fissiamo un momento e parliamo con calma.
+                Paga, match, parla. Tutto in Ascoltami, audio-only.
               </p>
             </div>
 
@@ -124,114 +123,89 @@ export default function Home() {
                 </li>
               ))}
             </ol>
+
+            <div className="mt-14">
+              <Link
+                href="/come-funziona"
+                className="font-semibold text-tide underline underline-offset-4"
+              >
+                Dettagli passo passo
+              </Link>
+            </div>
           </div>
         </section>
 
-        <section id="temi" className="bg-foam px-5 py-24 sm:px-8 sm:py-32">
-          <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[0.9fr_1.2fr] lg:gap-24">
-            <div className="lg:sticky lg:top-24 lg:self-start">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-tide">
-                Ascolto
-              </p>
-              <h2 className="mt-3 font-[family-name:var(--font-heading)] text-[clamp(2rem,4vw,3.25rem)] font-bold tracking-[-0.04em] text-ink">
-                Di cosa possiamo parlare
-              </h2>
-              <p className="mt-4 max-w-sm text-muted-foreground leading-relaxed">
-                Non serve avere le idee chiare. Se qualcosa ti pesa, puoi
-                scrivermi: partiamo da lì.
-              </p>
-            </div>
+        <section className="bg-foam px-5 py-24 sm:px-8 sm:py-32">
+          <div className="mx-auto max-w-6xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-tide">
+              Listino
+            </p>
+            <h2 className="mt-3 font-[family-name:var(--font-heading)] text-[clamp(2rem,4vw,3.25rem)] font-bold tracking-[-0.04em] text-ink">
+              Prezzi chiari
+            </h2>
+            <p className="mt-4 max-w-xl text-muted-foreground">
+              Sessione umana audio ≤30′. Payout Listener fisso{" "}
+              {formatEur(3.5)} a sessione completata.
+            </p>
 
-            <ul className="space-y-0">
-              {topics.map((topic, index) => (
-                <li key={topic}>
-                  <a
-                    href="#prenota"
-                    className="topic-row group flex items-baseline gap-5 border-b border-ink/8 py-6 transition-colors hover:text-tide"
-                  >
-                    <span className="w-8 shrink-0 font-[family-name:var(--font-heading)] text-sm font-semibold text-ink/25 transition group-hover:text-signal">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span className="text-lg tracking-tight text-ink sm:text-xl md:text-2xl">
-                      {topic}
-                    </span>
-                  </a>
+            <ul className="mt-12 grid gap-8 border-t border-ink/8 pt-10 md:grid-cols-3">
+              {([SKUS.call5, SKUS.pack5, SKUS.pack10] as const).map((sku) => (
+                <li key={sku.id} className="space-y-3">
+                  <p className="text-sm font-semibold uppercase tracking-[0.14em] text-tide">
+                    {sku.label}
+                  </p>
+                  <p className="font-[family-name:var(--font-heading)] text-4xl font-bold tracking-[-0.04em] text-ink">
+                    {formatEur(sku.priceEur)}
+                  </p>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {sku.description}
+                  </p>
                 </li>
               ))}
             </ul>
+
+            <div className="mt-12 flex flex-wrap gap-4">
+              <CtaLink href="/eta?next=/registrati">Inizia · 18+</CtaLink>
+              <CtaLink href="/prezzi" tone="ink">
+                Vedi prezzi
+              </CtaLink>
+            </div>
           </div>
         </section>
 
-        <section
-          id="prenota"
-          className="noise-overlay relative overflow-hidden bg-ink px-5 py-24 text-foam sm:px-8 sm:py-32"
-        >
+        <section className="noise-overlay relative overflow-hidden bg-ink px-5 py-24 text-foam sm:px-8 sm:py-32">
           <div
             className="pointer-events-none absolute -right-20 top-0 size-[28rem] rounded-full bg-tide/30 blur-3xl"
             aria-hidden
           />
-          <div
-            className="pointer-events-none absolute -left-16 bottom-0 size-[22rem] rounded-full bg-signal/20 blur-3xl"
-            aria-hidden
-          />
-
           <div className="relative mx-auto max-w-6xl">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-signal">
-              Prenota
+              Due lati
             </p>
             <h2 className="mt-4 max-w-3xl font-[family-name:var(--font-heading)] text-[clamp(2.4rem,6vw,4.5rem)] font-bold leading-[0.95] tracking-[-0.05em]">
-              Scrivimi per prenotarti
+              Parlare o ascoltare
             </h2>
             <p className="mt-5 max-w-md text-lg text-foam/65">
-              Mandami una mail a {site.email}: organizziamo un momento per
-              parlare. Orari: {site.hours}.
+              Speaker: raccontati con chi è disponibile. Listener: ascolto attivo
+              in piattaforma, {formatEur(3.5)} a sessione.
             </p>
-
-            <div className="mt-10">
-              <BookButton tone="light" />
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <CtaLink href="/eta?next=/registrati">Voglio parlare</CtaLink>
+              <CtaLink
+                href="/eta?next=/registrati"
+                tone="foam"
+              >
+                Diventa ascoltatore
+              </CtaLink>
             </div>
-
-            <aside className="mt-16 max-w-2xl rounded-3xl border border-foam/10 bg-foam/[0.04] p-6 text-sm leading-relaxed text-foam/60 backdrop-blur-sm sm:p-8">
-              <p className="font-semibold text-foam">Importante sapere</p>
-              <p className="mt-2">
-                Non sono uno psicologo e non offro terapia professionale: solo
-                ascolto e confronto. Se sei in pericolo immediato o pensi di
-                farti del male, chiama subito il{" "}
-                <a
-                  href="tel:112"
-                  className="font-medium text-signal underline decoration-signal/40 underline-offset-4"
-                >
-                  112
-                </a>{" "}
-                o recati al pronto soccorso.
-              </p>
-            </aside>
+            <p className="mt-12 max-w-2xl text-sm leading-relaxed text-foam/55">
+              {disclaimers.clinical} Orario live consigliato: {site.hours}.
+            </p>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-ink/8 bg-mist/50 px-5 py-12 sm:px-8">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="font-[family-name:var(--font-heading)] text-xl font-bold tracking-[-0.04em] text-ink">
-              {site.brand}
-              <span className="ml-1 inline-block size-1.5 translate-y-[-0.35em] rounded-full bg-signal" />
-            </p>
-            <p className="mt-1 max-w-md text-sm text-muted-foreground">
-              {site.tagline}
-            </p>
-          </div>
-          <div className="text-sm text-muted-foreground sm:text-right">
-            <a
-              href={bookHref()}
-              className="text-base font-semibold tracking-tight text-ink transition hover:text-tide"
-            >
-              {site.email}
-            </a>
-            <p className="mt-1">{site.hours}</p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
