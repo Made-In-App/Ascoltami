@@ -20,17 +20,17 @@ async function OkContent({ searchParams }: PageProps) {
         Pagamento
       </p>
       <h1 className="mt-3 font-[family-name:var(--font-heading)] text-4xl font-bold tracking-[-0.04em]">
-        Conferma
+        Pagamento ricevuto
       </h1>
       <p className="mt-4 text-muted-foreground">
         {sku.directCall
-          ? "Chiamata diretta pronta: avviamo il matching."
+          ? "Chiamata pronta: avviamo il matching."
           : `Pack accreditato (${sku.tokens} token). Puoi chiamare con 1 token.`}
       </p>
       {stub ? (
         <p className="mt-4 rounded-2xl border border-ink/10 bg-mist/70 px-4 py-3 text-sm text-muted-foreground">
-          Modalità stub (Stripe non attivo o fallback). In produzione il webhook
-          Stripe aggiornerà il wallet.
+          Pagamento in preparazione sul sistema carte. Se il saldo non si
+          aggiorna, riprova dalla home o contattaci.
         </p>
       ) : null}
       <div className="mt-8 flex flex-wrap gap-3">

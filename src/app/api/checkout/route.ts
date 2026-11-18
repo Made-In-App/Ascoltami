@@ -71,6 +71,6 @@ export async function POST(request: Request) {
     mode: "stub",
     sessionId,
     message:
-      "Stripe non configurato: checkout stub. Aggiungi STRIPE_SECRET_KEY per pagamenti reali.",
+      "Stripe non configurato sul server. Imposta STRIPE_SECRET_KEY per i pagamenti.",
   });
 }

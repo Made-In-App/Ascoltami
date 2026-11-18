@@ -56,8 +56,8 @@ export function AgeGateForm({ nextPath }: AgeGateFormProps) {
           Non possiamo attivare un account a pagamento.
         </p>
         <p className="text-muted-foreground leading-relaxed">
-          Ascoltami è riservato ai maggiorenni (18+). Puoi restare in contatto
-          con contenuti editoriali, ma non aprire sessioni a pagamento.
+          Ascoltami è riservato ai maggiorenni (18+). Puoi seguire i contenuti
+          editoriali, ma non aprire sessioni a pagamento.
         </p>
         <Link href="/" className="inline-flex font-semibold text-tide underline">
           Torna alla home

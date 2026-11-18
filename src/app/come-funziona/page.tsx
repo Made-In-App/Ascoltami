@@ -4,7 +4,7 @@ import { PageShell } from "@/components/page-shell";
 const steps = [
   {
     title: "Registrati (18+)",
-    text: "Confermi l’età, scegli Speaker o Listener, crei il profilo di matching.",
+    text: "Confermi l’età, scegli se parlare o ascoltare, completi il profilo.",
   },
   {
     title: "Paga o usa un token",
@@ -12,7 +12,7 @@ const steps = [
   },
   {
     title: "Match e audio",
-    text: "Aspetti un Listener disponibile e entri in room audio-only nel browser.",
+    text: "Aspetti un ascoltatore disponibile e entri in chiamata audio nel browser.",
   },
 ];
 
@@ -26,8 +26,7 @@ export default function HowItWorksPage() {
         Come funziona
       </h1>
       <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-        Marketplace peer: ascolto umano, solo web, solo audio. Niente bot in
-        questa fase MVP.
+        Marketplace peer: ascolto umano, solo web, solo audio.
       </p>
 
       <ol className="mt-14 space-y-10 border-t border-ink/10 pt-12">

@@ -11,7 +11,8 @@ export default function RegisterPage() {
         Crea account Ascoltami
       </h1>
       <p className="mt-3 text-muted-foreground">
-        Scegli se parlare o ascoltare. Auth MVP locale — nessun telefono.
+        Scegli se parlare o ascoltare. Nessun numero di telefono: il contatto
+        resta solo in Ascoltami.
       </p>
       <div className="mt-10">
         <AuthForm mode="register" />

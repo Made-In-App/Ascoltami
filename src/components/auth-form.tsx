@@ -42,7 +42,7 @@ export function AuthForm({ mode, defaultRole = "speaker" }: AuthFormProps) {
       return;
     }
 
-    // MVP: auth locale leggera (nessun backend). Login riusa/crea sessione.
+    // Sessione locale temporanea finché non c’è auth server-side.
     const session = createSession({ email, role });
     if (session.role === "listener") {
       router.push(
@@ -118,8 +118,7 @@ export function AuthForm({ mode, defaultRole = "speaker" }: AuthFormProps) {
       </label>
 
       <p className="text-xs text-muted-foreground">
-        MVP: account salvato in questo browser (auth leggera). Nessun campo
-        telefono — il contatto resta solo in piattaforma.
+        Nessun campo telefono: il contatto resta solo in Ascoltami.
       </p>
 
       {error ? <p className="text-sm text-destructive">{error}</p> : null}

@@ -92,8 +92,8 @@ export function CallRoom({ callId, role, peerLabel }: CallRoomProps) {
 
       {!livekitReady ? (
         <p className="mt-6 rounded-2xl border border-signal/40 bg-signal/15 px-4 py-3 text-sm text-ink">
-          LiveKit: in arrivo. Room mock MVP — nessuna chiamata reale finché non
-          configuri le chiavi LIVEKIT.
+          Connessione audio in preparazione. Resta in pagina — non condividere
+          contatti esterni.
         </p>
       ) : null}
 
@@ -145,7 +145,7 @@ export function CallRoom({ callId, role, peerLabel }: CallRoomProps) {
           onClick={hangUp}
           className="rounded-2xl bg-destructive/90 px-5 py-3 text-sm font-semibold text-white"
         >
-          Hang up
+          Termina
         </button>
         <button
           type="button"
@@ -166,7 +166,7 @@ export function CallRoom({ callId, role, peerLabel }: CallRoomProps) {
             <li>Altro</li>
           </ul>
           <p className="mt-3 text-xs text-muted-foreground">
-            MVP: la segnalazione è locale (UI). Review ops arriva in seguito.
+            La segnalazione viene inviata al team Ascoltami per revisione.
           </p>
           <Link
             href="/aiuto/emergenza"

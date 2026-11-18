@@ -96,8 +96,8 @@ export function CheckoutClient({ skuId }: CheckoutClientProps) {
       </ul>
 
       <p className="rounded-2xl border border-ink/10 bg-mist/70 px-4 py-3 text-sm text-muted-foreground">
-        Se <code>STRIPE_SECRET_KEY</code> è configurato, avviamo Stripe Checkout.
-        Altrimenti usiamo un pagamento stub MVP (credito locale).
+        Pagamento sicuro con Stripe. Se il servizio non è raggiungibile:
+        riprova tra poco.
       </p>
 
       {message ? <p className="text-sm text-destructive">{message}</p> : null}

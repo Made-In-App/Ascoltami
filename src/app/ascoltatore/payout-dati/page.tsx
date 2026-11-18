@@ -23,11 +23,10 @@ export default function PayoutDataPage() {
   return (
     <PageShell narrow>
       <h1 className="font-[family-name:var(--font-heading)] text-4xl font-bold tracking-[-0.04em]">
-        Dati fiscali
+        Dati per i pagamenti
       </h1>
       <p className="mt-3 text-muted-foreground">
-        Richiesti prima del primo payout o se saldo ≥ €50 (assunzione
-        operativa). Bozza MVP.
+        Li chiediamo prima del primo pagamento o quando il saldo raggiunge €50.
       </p>
       <form onSubmit={save} className="mt-8 space-y-4">
         <input
@@ -41,7 +40,7 @@ export default function PayoutDataPage() {
           className="w-full rounded-2xl border border-ink/12 bg-foam px-4 py-3"
         />
         <input
-          placeholder="IBAN (opzionale in MVP)"
+          placeholder="IBAN"
           className="w-full rounded-2xl border border-ink/12 bg-foam px-4 py-3"
         />
         <button

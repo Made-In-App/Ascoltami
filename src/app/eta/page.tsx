@@ -20,8 +20,7 @@ async function AgeGateContent({ searchParams }: PageProps) {
         Conferma la tua età
       </h1>
       <p className="mt-3 text-muted-foreground leading-relaxed">
-        Autodichiarazione: Ascoltami è per maggiorenni. Nessun provider di age
-        assurance in MVP.
+        Dichiarazione: Ascoltami è per maggiorenni.
       </p>
       <div className="mt-10">
         <AgeGateForm nextPath={nextPath} />

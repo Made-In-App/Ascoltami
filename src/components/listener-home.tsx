@@ -67,8 +67,8 @@ export function ListenerHome() {
           Ciao, {session.nickname}
         </h1>
         <p className="mt-3 text-muted-foreground">
-          Orario live consigliato 18:00–23:00 · payout{" "}
-          {formatEur(LISTENER_PAYOUT_EUR)} / sessione
+          Ascolto live 18:00–23:00 · compenso{" "}
+          {formatEur(LISTENER_PAYOUT_EUR)} a sessione
         </p>
       </div>
 
@@ -95,7 +95,7 @@ export function ListenerHome() {
         <div className="rounded-2xl border border-tide/30 bg-tide/10 p-5 text-left">
           <p className="font-semibold">Match in arrivo</p>
           <p className="mt-1 text-sm text-muted-foreground">
-            Speaker in coda — accetta entro 60s (placeholder MVP).
+            Una persona vuole parlare — accetta entro 60 secondi.
           </p>
           <div className="mt-4 flex gap-3">
             <Link

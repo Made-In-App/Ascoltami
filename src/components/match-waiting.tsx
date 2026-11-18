@@ -35,7 +35,9 @@ const MOCK: Proposal[] = [
 
 export function MatchWaiting() {
   const router = useRouter();
-  const [phase, setPhase] = useState<"search" | "proposals" | "queue">("search");
+  const [phase, setPhase] = useState<"search" | "best" | "alternatives" | "queue">(
+    "search"
+  );
   const [elapsed, setElapsed] = useState(0);
 
   useEffect(() => {
@@ -48,7 +50,7 @@ export function MatchWaiting() {
 
   useEffect(() => {
     const tick = window.setInterval(() => setElapsed((e) => e + 1), 1000);
-    const show = window.setTimeout(() => setPhase("proposals"), 2800);
+    const show = window.setTimeout(() => setPhase("best"), 2800);
     return () => {
       window.clearInterval(tick);
       window.clearTimeout(show);
@@ -60,6 +62,15 @@ export function MatchWaiting() {
     router.push(`/ascolto/chiamata/${callId}?listener=${id}`);
   }
 
+  const title =
+    phase === "search"
+      ? "Cerchiamo un ascoltatore…"
+      : phase === "best"
+        ? "Ascoltatore trovato"
+        : phase === "alternatives"
+          ? "Proposte disponibili"
+          : "Coda / prenota slot";
+
   return (
     <div className="space-y-8">
       <div>
@@ -67,15 +78,10 @@ export function MatchWaiting() {
           Matching
         </p>
         <h1 className="mt-3 font-[family-name:var(--font-heading)] text-4xl font-bold tracking-[-0.04em]">
-          {phase === "search"
-            ? "Cerchiamo un ascoltatore…"
-            : phase === "proposals"
-              ? "Proposte disponibili"
-              : "Coda / prenota slot"}
+          {title}
         </h1>
         <p className="mt-3 text-muted-foreground">
-          Di solito &lt; 90s in orario live. MVP: matching placeholder — niente
-          bot.
+          Di solito meno di 90 secondi in orario live (18:00–23:00).
         </p>
         <p className="mt-2 text-sm text-ink/50">Attesa: {elapsed}s</p>
       </div>
@@ -88,7 +94,41 @@ export function MatchWaiting() {
         </div>
       ) : null}
 
-      {phase === "proposals" ? (
+      {phase === "best" ? (
+        <div className="space-y-5">
+          <div>
+            <p className="font-semibold text-ink">{MOCK[0].name}</p>
+            <p className="text-sm text-muted-foreground">
+              {MOCK[0].overlap} · ★ {MOCK[0].rating}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => accept("best")}
+            className="inline-flex h-14 items-center justify-center rounded-2xl bg-signal px-6 font-semibold text-ink"
+          >
+            Accetta il migliore
+          </button>
+          <div className="flex flex-col gap-2">
+            <button
+              type="button"
+              onClick={() => setPhase("alternatives")}
+              className="text-sm font-semibold text-tide underline"
+            >
+              Vedi alternative
+            </button>
+            <button
+              type="button"
+              onClick={() => setPhase("queue")}
+              className="text-sm font-semibold text-muted-foreground underline"
+            >
+              Nessuno disponibile? Vai in coda
+            </button>
+          </div>
+        </div>
+      ) : null}
+
+      {phase === "alternatives" ? (
         <ul className="space-y-4">
           {MOCK.map((p) => (
             <li
@@ -110,22 +150,13 @@ export function MatchWaiting() {
               </button>
             </li>
           ))}
-          <li className="pt-2">
-            <button
-              type="button"
-              onClick={() => accept("best")}
-              className="inline-flex h-12 items-center justify-center rounded-2xl bg-ink px-5 font-semibold text-foam"
-            >
-              Accetta il migliore
-            </button>
-          </li>
           <li>
             <button
               type="button"
-              onClick={() => setPhase("queue")}
+              onClick={() => setPhase("best")}
               className="text-sm font-semibold text-tide underline"
             >
-              Nessuno entro SLA? Vai in coda
+              Torna ad Accetta il migliore
             </button>
           </li>
         </ul>
@@ -134,8 +165,8 @@ export function MatchWaiting() {
       {phase === "queue" ? (
         <div className="space-y-4">
           <p className="text-muted-foreground leading-relaxed">
-            Nessun Listener online al momento. Puoi restare in coda o prenotare
-            uno slot serale. Niente telefono/WhatsApp — e niente Bot in MVP.
+            Nessun ascoltatore online al momento. Resta in coda o prenota uno
+            slot serale. Il contatto resta solo in Ascoltami.
           </p>
           <Link
             href="/ascolto/home"

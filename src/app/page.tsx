@@ -15,7 +15,7 @@ const steps = [
   {
     n: "02",
     title: "Match con un Listener",
-    text: "Cerchiamo un ascoltatore disponibile. In MVP: coda se nessuno è online — niente bot.",
+    text: "Cerchiamo qualcuno disponibile. Se nessuno è online, entri in coda o prenoti uno slot.",
   },
   {
     n: "03",
@@ -144,7 +144,7 @@ export default function Home() {
               Prezzi chiari
             </h2>
             <p className="mt-4 max-w-xl text-muted-foreground">
-              Sessione umana audio ≤30′. Payout Listener fisso{" "}
+              Sessione umana audio ≤30′. Compenso ascoltatore{" "}
               {formatEur(3.5)} a sessione completata.
             </p>
 
@@ -186,8 +186,8 @@ export default function Home() {
               Parlare o ascoltare
             </h2>
             <p className="mt-5 max-w-md text-lg text-foam/65">
-              Speaker: raccontati con chi è disponibile. Listener: ascolto attivo
-              in piattaforma, {formatEur(3.5)} a sessione.
+              Speaker: raccontati con chi è disponibile. Ascoltatore: ascolto
+              attivo in piattaforma, {formatEur(3.5)} a sessione.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <CtaLink href="/eta?next=/registrati">Voglio parlare</CtaLink>
@@ -199,7 +199,7 @@ export default function Home() {
               </CtaLink>
             </div>
             <p className="mt-12 max-w-2xl text-sm leading-relaxed text-foam/55">
-              {disclaimers.clinical} Orario live consigliato: {site.hours}.
+              {disclaimers.clinical} {site.hours}.
             </p>
           </div>
         </section>

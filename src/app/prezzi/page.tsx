@@ -14,9 +14,9 @@ export default function PricingPage() {
         Prezzi
       </h1>
       <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-        Sessioni umane audio ≤30′ in piattaforma. Nessun pagamento al minuto.
-        Payout Listener fisso {formatEur(LISTENER_PAYOUT_EUR)} a sessione
-        completata.
+        Sessioni umane audio fino a 30 minuti in piattaforma. Nessun pagamento
+        al minuto. Compenso ascoltatore fisso{" "}
+        {formatEur(LISTENER_PAYOUT_EUR)} a sessione completata.
       </p>
 
       <ul className="mt-14 grid gap-10 border-t border-ink/10 pt-12 md:grid-cols-3">
@@ -37,7 +37,7 @@ export default function PricingPage() {
               </p>
             ) : (
               <p className="text-sm text-ink/70">
-                One-shot: non crea token in wallet
+                Una sessione · non crea token
               </p>
             )}
           </li>
